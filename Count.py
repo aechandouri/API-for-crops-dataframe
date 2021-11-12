@@ -2,6 +2,7 @@ from Unit import Unit
 
 
 class Count(Unit):
-    def __init__(self, id: int, what: str, name = "Count"):
-        super().__init__(id, name)
+    def __init__(self, what: str, id: int, name = "Count"):
         self.__what = what
+        super().__init__(id, name)
+        
