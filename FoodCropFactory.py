@@ -1,27 +1,28 @@
-from Unit import Unit
 from CommodityGroup import CommodityGroup
-from IndicatorGroup import IndicatorGroup
 from Indicator import Indicator
+from Unit import Unit
 from Commodity import Commodity
-from Measurement import Measurement
-
 from Price import Price
 from Weight import Weight
+from Measurement import Measurement
+from IndicatorGroup import IndicatorGroup
 from Volume import Volume
 from Surface import Surface
 from Count import Count
 from Ratio import Ratio
 from UnitRatio import UnitRatio
+from IndicatorGroup import IndicatorGroup
 
 
 class FoodCropFactory():
 
     def __init__(self):
+        self.__commodityRegistry = {}
         self.__unitsRegistry = {}
         self.__indicatorsRegistry = {}
-        self.__commodityRegistry = {}
+        
 
-    def createVolume(self, id: int, name: str) -> Unit:
+    def createVolume(self, id: int, name: str) -> Unit:  #retourne un objet de type unit
         if id not in self.__unitsRegistry:
             u = Volume(id, name)
             self.__unitsRegistry[id] = u
@@ -29,7 +30,7 @@ class FoodCropFactory():
         else:
             return self.__unitsRegistry[id]
 
-    def createPrice(self, id: int, name: str) -> Unit:
+    def createPrice(self, id: int, name: str) -> Unit:  #retourne un objet de type unit
         if id not in self.__unitsRegistry:
             p = Price(id, name)
             self.__unitsRegistry[id] = p
@@ -37,7 +38,7 @@ class FoodCropFactory():
         else:
             return self.__unitsRegistry[id]
 
-    def createWeight(self, id: int, weight: float, name: str) -> Unit:
+    def createWeight(self, id: int, weight: float, name: str) -> Unit:  #retourne un objet de type unit
         if id not in self.__unitsRegistry:
             w = Weight(id, weight, name)
             self.__unitsRegistry[id] = w
@@ -45,7 +46,7 @@ class FoodCropFactory():
         else:
             return self.__unitsRegistry[id]
 
-    def createSurface(self, id: int, name: str) -> Unit:
+    def createSurface(self, id: int, name: str) -> Unit:   #retourne un objet de type unit
         if id not in self.__unitsRegistry:
             s = Surface(id, name)
             self.__unitsRegistry[id] = s
@@ -53,7 +54,7 @@ class FoodCropFactory():
         else:
             return self.__unitsRegistry[id]
 
-    def createCount(self, id: int, what: str, name: str) -> Unit:
+    def createCount(self, id: int, what: str, name: str) -> Unit:   #retourne un objet de type unit
         if id not in self.__unitsRegistry:
             c = Count(id, what, name)
             self.__unitsRegistry[id] = c
@@ -61,8 +62,8 @@ class FoodCropFactory():
         else:
             return self.__unitsRegistry[id]
 
-    def createRatio(self, id: int, name: str) -> Unit:
-        if id not in self.__unitsRegistry:
+    def createRatio(self, id: int, name: str) -> Unit: #retourne un objet de type unit
+        if id not in self.__unitsRegistry: 
             r = Ratio(id, name)
             self.__unitsRegistry[id] = r
             return r
