@@ -10,4 +10,4 @@ class Commodity(Describable):
         
 
     def describe(self):
-        return "Commodity :" + self.__name + self.group.name
+        return ("Commodity :" + self.__name + self.group.name)
