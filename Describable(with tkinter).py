@@ -17,7 +17,7 @@ class Describable:
         heightwin = win_main.winfo_screenheight()
 
        
-        API_title = Label(main, text="FoodCorps API")
+        API_title = Label(win_main, text="FoodCorps API")
         API_title.pack()
 
         win_main.mainloop()
