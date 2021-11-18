@@ -17,30 +17,31 @@ class FoodCropsDataset:
         self.__measurements = []
 
 
-        units = {
-            1: self.factory.createCount(1, "Million bushels", "Million bushels"),
-            2: self.factory.createSurface(2, "Million acres"),
-            3: self.factory.createVolume(3, "Bushels"),
-            4: self.factory.createUnitRatio(4, self.factory.createPrice(100, "Dollars"), self.factory.createVolume(101, "bushel"), "Dollars per bushels"),
-            5: self.factory.createUnitRatio(5, self.factory.createPrice(100, "Dollars"), self.factory.createWeight(102, 1, "cwt"), "Dollars per cwt"),
-            6: self.factory.createUnitRatio(6, self.factory.createWeight(3, 1, "Bushels"), self.factory.createSurface(103, "acre"), "Bushels per acre"),
-            7: self.factory.createWeight(7, 1, "1,000 metric tons"),
-            8: self.factory.createWeight(8, 1, "Million metric tons"),
-            9: self.factory.createWeight(9, 1, "1,000 tons"),
-            10: self.factory.createSurface(10, "1,000 acres"),
-            11: self.factory.createUnitRatio(11, self.factory.createWeight(104, 1, "Tons"), self.factory.createSurface(103, "acre"), "Tons per acre"),
-            12: self.factory.createUnitRatio(11, self.factory.createPrice(100, "Dollars"), self.factory.createWeight(105, 1, "ton"), "Dollars per ton"),
-            13: self.factory.createRatio(13, "Ratio"),
-            14: self.factory.createUnitRatio(14, self.factory.createPrice(106, "Cents"), self.factory.createWeight(107, 1, "pound"), "Cents per pound"),
+        dico_units = { 
+            46: self.factory.createCount(46, "Million animal units", "Million animal units"), 
+            45: self.factory.createUnitRatio(45, self.factory.createWeight("Metric tons",1,3), self.factory.createSurface(1010, "hectare"), "Metric tons per hectare"),
+            41: self.factory.createWeight( "Ton",1, 41),
+            44: self.factory.createSurface("1,000 hectare",44),
+            31: self.factory.createUnitRatio(31, self.factory.createPrice( "Dollars",100), self.factory.createWeight( "short ton",1,108), "Dollars per short ton"),
             15: self.factory.createRatio(15, "Index"),
             16: self.factory.createVolume(16, "Carloads originated"),
             17: self.factory.createVolume(17, "1,000 liters"),
             18: self.factory.createVolume(18, "Gallons"),
-            31: self.factory.createUnitRatio(31, self.factory.createPrice(100, "Dollars"), self.factory.createWeight(108, 1, "short ton"), "Dollars per short ton"),
-            41: self.factory.createWeight(41, 1, "Ton"),
-            44: self.factory.createSurface(44, "1,000 hectare"),
-            45: self.factory.createUnitRatio(45, self.factory.createWeight(3, 1, "Metric tons"), self.factory.createSurface(1010, "hectare"), "Metric tons per hectare"),
-            46: self.factory.createCount(46, "Million animal units", "Million animal units"),
+            11: self.factory.createUnitRatio(11, self.factory.createWeight("Tons",1,104), self.factory.createSurface( "acre",103), "Tons per acre"),
+            12: self.factory.createUnitRatio(11, self.factory.createPrice("Dollars",100), self.factory.createWeight("ton",1,105), "Dollars per ton"),
+            13: self.factory.createRatio(13, "Ratio"),
+            9: self.factory.createWeight("1,000 tons", 1, 9),
+            10: self.factory.createSurface("1,000 acres",10),
+            6: self.factory.createUnitRatio(6, self.factory.createWeight("Bushels",1,3), self.factory.createSurface("acre",103), "Bushels per acre"),
+            7: self.factory.createWeight( "1,000 metric tons", 1 , 7),
+            8: self.factory.createWeight( "Million metric tons", 1, 8),
+            14: self.factory.createUnitRatio(14, self.factory.createPrice("Cents",106), self.factory.createWeight("pound",1,107), "Cents per pound"),
+            4: self.factory.createUnitRatio(4, self.factory.createPrice("Dollars",100), self.factory.createVolume(101, "bushel"), "Dollars per bushels"),
+            5: self.factory.createUnitRatio(5, self.factory.createPrice("Dollars",100), self.factory.createWeight("cwt",1,102), "Dollars per cwt"),
+            1: self.factory.createCount(1, "Million bushels", "Million bushels"),
+            2: self.factory.createSurface("Million acres",2),
+            3: self.factory.createVolume(3, "Bushels"),
+            
         }
     def load(self, datasetPath: str):
         FCdataset = pd.read_csv(datasetPath)
@@ -51,7 +52,7 @@ class FoodCropsDataset:
             indicatorGroup = IndicatorGroup(j["SC_Group_ID"])
             # On cree / récupère  l'unité de l'ind
             id = j["SC_Unit_ID"]
-            unit = units[id]
+            unit = dico_units[id]
 
             # On cree / récupère l'ind
             ind = self.factory.createIndicator(j["SC_Attribute_ID"], j["SC_Frequency_ID"], j["SC_Frequency_Desc"], j["SC_GeographyIndented_Desc"], indicatorGroup, unit, j["SC_Attribute_Desc"])
