@@ -121,6 +121,6 @@ class FoodCropsDataset:
             for val in measurementList:
                 if val in temp:
                     list.append(val)
-            list_measure = listew
+            list_measure = liste
 
         return list_measure
